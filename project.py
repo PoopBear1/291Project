@@ -68,6 +68,7 @@ def register_birth():
         from persons p
         where upper(fname)=upper(?) and upper(lname) = upper(?)
     '''
+#Qestion1 
     with connect_db() as conn:
         # check if child exist
         c = conn.cursor()
@@ -147,6 +148,7 @@ def add_person(c,person):
     c.execute(query,data)
 
 @app.route("/api/register_marriage",methods=["post"])
+#Question 2 
 def register_marriage():
     if not session:
         abort(400)
@@ -198,6 +200,7 @@ def register_marriage():
     return jsonify(1)
     
 @app.route("/api/renew_registration",methods=["post"])
+#Qestion 3
 def renew_registration():
 
     form = request.json    
@@ -221,6 +224,7 @@ def renew_registration():
 
 
 @app.route("/api/process_bill",methods=["post"])
+#Qestion 4
 def process_bill():
     form = request.json    
     seller = form.get("seller")
@@ -294,6 +298,7 @@ def process_bill():
 
 
 @app.route("/api/process_payment",methods=["post"])
+#question 5
 def process_payment():
     form = request.json
     with connect_db() as conn:
@@ -329,6 +334,7 @@ def process_payment():
     return  jsonify({"remain" : remain})
 
 @app.route("/api/driver_points",methods=["post"])
+#Question 6
 def driver_points():
     form = request.json
     with connect_db() as conn:
@@ -420,6 +426,7 @@ def registration():
         return jsonify({"r" : row})
 
 @app.route("/api/issue_ticket",methods=["post"])
+#Question 7
 def issue_ticket():
     form = request.json
     with connect_db() as conn:
@@ -441,6 +448,7 @@ def issue_ticket():
         return jsonify(1)
 
 @app.route("/api/find_car_owner",methods=["post"])
+#Question 8
 def find_car_owner():
     form = request.json
     with connect_db() as conn:
